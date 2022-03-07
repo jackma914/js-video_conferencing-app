@@ -1,0 +1,24 @@
+{
+  "name": "js-video_conferencing-app",
+  "version": "1.0.0",
+  "description": "- nodejs 프로젝트 초기화\r - 첫번째 뷰 초기화",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackma914/react-tesla-clone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jackma914/react-tesla-clone/issues"
+  },
+  "homepage": "https://github.com/jackma914/react-tesla-clone#readme"
+}
