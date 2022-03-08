@@ -22,7 +22,15 @@ navigator.mediaDevices
     addVideoStream(myVideo, stream);
   });
 
-socket.emit("join-room");
+socket.emit("join-room", ROOM_ID);
+
+socket.on("user-connected", () => {
+  connecToNewUser();
+});
+
+const connecToNewUser = () => {
+  console.log("new user");
+};
 
 const addVideoStream = (video, stream) => {
   // !important 받아온 stream을 video.srcObject에 넣어주면 실시간으로 영상을 볼수 있습니다.
