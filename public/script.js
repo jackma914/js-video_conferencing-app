@@ -1,3 +1,4 @@
+const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 
 //HTML 문서에서, Document.createElement() 메서드는 지정한 tagName의 HTML 요소를 만들어 반환합니다.
@@ -17,18 +18,24 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream;
-    console.log(stream);
+    //받아온 MediaStream을 myVideoStream에 넣어주고, addVideoStream 함수에 인자로 myVicdoe와 MediaStream값을 보내줍니다.
     addVideoStream(myVideo, stream);
   });
 
+socket.emit("join-room");
+
 const addVideoStream = (video, stream) => {
+  // !important 받아온 stream을 video.srcObject에 넣어주면 실시간으로 영상을 볼수 있습니다.
   video.srcObject = stream;
 
   //   미디어의 메타 데이터가 로드되었을 때를 나타낸다.
   // 메타 데이터는 우리가 유용하게 사용할 수 있는 동영상의 재생시간과 같은 것을 의미한다.
   // 미디어가 로드되기 전에, 먼저 메타 데이터를 뽑아와서 활용할 수 있다.
   video.addEventListener("loadedmetadata", () => {
+    //이벤트가 작동하면 video를 싱행합니다.
     video.play();
   });
+
+  // append를 이용해 video를 element를 추가해줍니다.
   videoGrid.append(video);
 };

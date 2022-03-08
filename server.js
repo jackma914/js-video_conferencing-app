@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
+const io = require("socket.io")(server);
 const { v4: uuidv4 } = require("uuid");
 
 //정적으로 public폴더의 파일을 불러옵니다.
@@ -17,6 +18,12 @@ app.get("/", (req, res) => {
 // id를 room.ejs에 전달
 app.get("/:room", (req, res) => {
   res.render("room", { roomId: req.params.room });
+});
+
+io.on("connection", (socket) => {
+  socket.on("join-room", () => {
+    console.log("joined room");
+  });
 });
 
 server.listen(3030);
